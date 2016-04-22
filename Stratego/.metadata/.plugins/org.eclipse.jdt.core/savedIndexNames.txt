@@ -13,7 +13,6 @@ INDEX VERSION 1.127+C:\J\SER216\SER-216-Stratego-\Stratego\.metadata\.plugins\or
 1827669085.index
 3020317496.index
 4009614972.index
-246016847.index
 568897961.index
 3152152696.index
 3616180831.index

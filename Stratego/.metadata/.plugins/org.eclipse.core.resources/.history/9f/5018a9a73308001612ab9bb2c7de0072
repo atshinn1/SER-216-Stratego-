@@ -1,0 +1,36 @@
+package edu.asu.stratego.media;
+
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
+import edu.asu.stratego.util.HashTables;
+
+public class PlaySound {
+	private static Media cornfield = new Media(new File("/Stratego/src/edu/asu/stratego/media/sound/Wilhelm_Scream.mp3").toURI().toString());
+	private static MediaPlayer play;
+	
+	public static void playMusic(String file, int Volume) {
+		AudioClip music = HashTables.SOUND_MAP.get(file);
+		music.setVolume(Volume);
+		music.play();
+		System.out.println("Played music (\"" + file + "\", " + Volume*100 + "% volume)");
+	}
+	public static void playEffect1(String file, int Volume) {
+		AudioClip effect1 = HashTables.SOUND_MAP.get(file);
+		effect1.setVolume(Volume);
+		effect1.play();
+	}
+	public static void playEffect2(String file, int Volume) {
+		AudioClip effect2 = HashTables.SOUND_MAP.get(file);
+		effect2.setVolume(Volume);
+		effect2.play();
+	}
+	
+	public static void playCornfield(){
+		play = new MediaPlayer(cornfield);
+		play.play();
+	}
+}
