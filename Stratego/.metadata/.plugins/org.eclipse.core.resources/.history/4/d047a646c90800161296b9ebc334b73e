@@ -1,0 +1,29 @@
+package edu.asu.stratego.media;
+
+import java.io.File;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+public class Scream implements Runnable{
+	private Thread thread = new Thread(this);
+	Media wilhelm = new Media(new File("src/edu/asu/stratego/media/sound/Wilhelm_Scream.mp3").toURI().toString());
+	MediaPlayer scream = new MediaPlayer(wilhelm);
+	
+	@Override
+	public void run() {
+		while(true)
+			scream.play();		
+	}
+	
+	public void start(){
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		thread.start();
+	}
+
+}
