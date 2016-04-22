@@ -1,0 +1,125 @@
+package edu.asu.stratego;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import edu.asu.stratego.game.ClientGameManager;
+import edu.asu.stratego.game.Game;
+import edu.asu.stratego.game.ServerGameManager;
+import edu.asu.stratego.gui.ClientStage;
+
+
+ 
+public class MainMenu extends Application {
+	private static double UNIT;
+	private static int SIDE;
+	
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+    
+    @Override
+    public void start(Stage primaryStage) {
+    	VBox buttonBox = new VBox();
+    	buttonBox.setPadding(new Insets(10, 50, 50, 50));
+        buttonBox.setSpacing(10);
+
+        
+    	primaryStage.setTitle("Stratego Main Menu");
+    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        SIDE = (int) (0.85 * screenSize.getHeight()) / 12 * 12;
+        UNIT = SIDE / 12;
+        primaryStage.setMaxHeight(SIDE);
+        primaryStage.setMaxHeight(SIDE);
+    	primaryStage.setResizable(true);
+    	
+        Button btn = new Button();
+        Button server = new Button();
+        
+        buttonBox.getChildren().addAll(btn,server);
+        buttonBox.setAlignment(Pos.CENTER);
+        server.setText("Start Server");
+        server.setOnAction(new EventHandler<ActionEvent>() {
+        	@Override
+        	public void handle(ActionEvent event){
+        		String hostAddress;
+        		ServerSocket listener = null;
+        		
+        		try{
+        			hostAddress = InetAddress.getLocalHost().getHostAddress();
+        			int sessionNumber = 1;                
+                
+                    listener = new ServerSocket(4212);
+                    System.out.println("Server started @ " + hostAddress);
+                    System.out.println("Waiting for incoming connections...\n");
+                    
+                    while (true) {
+                        Socket playerOne = listener.accept();
+                        System.out.println("Session " + sessionNumber + 
+                                           ": Player 1 has joined the session");
+                        
+                        Socket playerTwo = listener.accept();
+                        System.out.println("Session " + sessionNumber + 
+                                           ": Player 2 has joined the session");
+                        
+                        Thread session = new Thread(new ServerGameManager(
+                                playerOne, playerTwo, sessionNumber++));
+                        session.setDaemon(true);
+                        session.start();
+                    }
+                }
+        	catch(UnknownHostException uhe){        			
+    		}
+            catch(IOException io){
+            }
+        	finally{try {
+				listener.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}}
+                
+        	}});
+        
+        btn.setText("Start Client");
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	// (MODEL) Start a new game.
+                new Game();
+                
+                // (VIEW) Display client GUI on the JavaFX Application thread.
+                ClientStage client = new ClientStage();
+                
+                // (CONTROLLER) Control the game on a separate thread.
+                Thread manager = new Thread(new ClientGameManager(client));
+                manager.setDaemon(true);
+                manager.start();
+            }
+        });
+        
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-image: url('http://thatsgaming.nl/wp-content/uploads/2015/08/unnamed-1024x768.png')");
+        root.getChildren().add(buttonBox);
+        //StackPane.setAlignment(buttonBox,Pos.CENTER_LEFT);
+        StackPane.setAlignment(buttonBox,Pos.CENTER);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
+    }
+}

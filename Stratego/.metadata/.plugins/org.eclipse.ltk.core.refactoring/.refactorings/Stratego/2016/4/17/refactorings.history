@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;MainMenu.java&apos; to &apos;Stratego/src/edu.asu.stratego&apos;&#x0D;&#x0A;- Original project: &apos;Stratego&apos;&#x0D;&#x0A;- Destination element: &apos;Stratego/src/edu.asu.stratego&apos;&#x0D;&#x0A;- Original element: &apos;edu.asu.stratego.gui.MainMenu.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;edu.asu.stratego" element1="/src&lt;edu.asu.stratego.gui{MainMenu.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1461269411929" units="1" version="1.0"/>
+</session>
