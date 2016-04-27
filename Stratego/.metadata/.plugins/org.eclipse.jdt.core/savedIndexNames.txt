@@ -1,16 +1,15 @@
 INDEX VERSION 1.127+C:\J\SER216\SER-216-Stratego-\Stratego\.metadata\.plugins\org.eclipse.jdt.core
-1679064577.index
 3988822264.index
+1679064577.index
 36278597.index
 2634110937.index
-3438167942.index
 2339264475.index
 2477091700.index
+3438167942.index
 144572530.index
 3882240654.index
 2557634897.index
 1791709537.index
-246016847.index
 1827669085.index
 4009614972.index
 3020317496.index

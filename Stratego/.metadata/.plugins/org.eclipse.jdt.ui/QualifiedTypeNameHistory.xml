@@ -11,4 +11,11 @@
 <fullyQualifiedTypeName name="javafx.scene.layout.Background"/>
 <fullyQualifiedTypeName name="edu.asu.stratego.media.ImageConstants"/>
 <fullyQualifiedTypeName name="javafx.scene.layout.BackgroundImage"/>
+<fullyQualifiedTypeName name="javafx.concurrent.Task"/>
+<fullyQualifiedTypeName name="edu.asu.stratego.media.PlayCornfield"/>
+<fullyQualifiedTypeName name="java.time.Duration"/>
+<fullyQualifiedTypeName name="javafx.scene.media.Media"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="javafx.scene.media.MediaPlayer"/>
+<fullyQualifiedTypeName name="edu.asu.stratego.media.Scream"/>
 </qualifiedTypeNameHistroy>
