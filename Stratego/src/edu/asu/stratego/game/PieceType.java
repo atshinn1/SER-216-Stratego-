@@ -14,7 +14,7 @@ public enum PieceType {
     GENERAL(9, 1),
     MARSHAL(10, 1),
     BOMB(-1, 6),
-    SPY(-1, 1),
+    SPY(-2, 1),
     FLAG(-1, 1);
     
     private int value;
