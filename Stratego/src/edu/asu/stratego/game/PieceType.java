@@ -49,7 +49,10 @@ public enum PieceType {
         // Defender is a flag.
         if (defender == PieceType.FLAG)
             return BattleOutcome.WIN;
-        
+        //DO NOT MOVE YOUR SPY INTO THE         BOMB.
+        if (defender == PieceType.BOMB && this == PieceType.SPY){
+            return BattleOutcome.LOSE
+        }
         // Attacking piece and defending piece are the same piece type.
         else if (this.value == defender.value)
             return BattleOutcome.DRAW;
