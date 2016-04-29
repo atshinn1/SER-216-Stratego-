@@ -16,6 +16,7 @@ import edu.asu.stratego.game.ServerGameManager;
 public class Server extends Thread {
 	
 	private Thread serverThread;
+	private String message = "";
 	
 	public Server(){
 		
@@ -24,7 +25,15 @@ public class Server extends Thread {
 		
 	}
 
-    public void run(){
+    public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void run(){
     		
     	try {
 			runServer(); // Call server as separate method
@@ -43,6 +52,10 @@ public class Server extends Thread {
         
         try {
             listener = new ServerSocket(4212);
+            String serverMessage =  "Server started @ "; 
+            serverMessage.concat(hostAddress);
+            this.setMessage(serverMessage+hostAddress);
+
             System.out.println("Server started @ " + hostAddress);
             System.out.println("Waiting for incoming connections...\n");
             
@@ -61,6 +74,8 @@ public class Server extends Thread {
                 session.setDaemon(true);
                 session.start();
             }
+        }catch(Exception e){
+        	this.setMessage("FAILED TO START SERVER");
         }
         
         finally { listener.close(); }
