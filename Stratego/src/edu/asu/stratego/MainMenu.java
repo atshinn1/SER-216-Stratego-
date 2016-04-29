@@ -79,43 +79,9 @@ public class MainMenu extends Application {
         server.setOnAction(new EventHandler<ActionEvent>() {
         	@Override
         	public void handle(ActionEvent event){
-        		String hostAddress;
-        		ServerSocket listener = null;
-        		
-        		try{
-        			hostAddress = InetAddress.getLocalHost().getHostAddress();
-        			int sessionNumber = 1;                
-                
-                    listener = new ServerSocket(4212);
-                    System.out.println("Server started @ " + hostAddress);
-                    System.out.println("Waiting for incoming connections...\n");
-                    
-                    while (true) {
-                        Socket playerOne = listener.accept();
-                        System.out.println("Session " + sessionNumber + 
-                                           ": Player 1 has joined the session");
-                        
-                        Socket playerTwo = listener.accept();
-                        System.out.println("Session " + sessionNumber + 
-                                           ": Player 2 has joined the session");
-                        
-                        Thread session = new Thread(new ServerGameManager(
-                                playerOne, playerTwo, sessionNumber++));
-                        session.setDaemon(true);
-                        session.start();
-                    }
-                }
-        	catch(UnknownHostException uhe){        			
-    		}
-            catch(IOException io){
-            }
-        	finally{try {
-				listener.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}}
-                
+        	
+        		new Server();
+        	
         	}});
         
         //client button listener
@@ -143,6 +109,7 @@ public class MainMenu extends Application {
         	@Override
         	public void handle(ActionEvent event){
         		primaryStage.close();
+        		System.exit(0);
         	}
         });
         
