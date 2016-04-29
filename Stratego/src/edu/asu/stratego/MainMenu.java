@@ -148,7 +148,7 @@ public class MainMenu extends Application {
         
         StackPane root = new StackPane();
         
-        root.setStyle("-fx-background-image: url('http://thatsgaming.nl/wp-content/uploads/2015/08/unnamed-1024x768.png')");
+        root.setStyle("-fx-background-image: url(edu/asu/stratego/media/images/board/Menu_Background.png)");
         root.getChildren().add(buttonBox);
         root.setMaxHeight(1024.0);
         root.setMaxWidth(768.0);      
